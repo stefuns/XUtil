@@ -47,5 +47,4 @@ public class MyApp extends Application {
             }
         }).debug("PageLog").init(this);
     }
-
 }
