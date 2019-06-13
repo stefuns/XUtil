@@ -9,10 +9,12 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.provider.MediaStore;
+import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.annotation.StringDef;
 import android.support.v4.content.FileProvider;
 
+import com.stepyen.constant.RecordConstant;
 import com.stepyen.xutil.XUtil;
 import com.stepyen.xutil.common.StringUtils;
 import com.stepyen.xutil.file.FileUtils;
@@ -397,7 +399,7 @@ public final class IntentUtils {
      * @return 拨打电话意图
      */
     public static Intent getCallIntent(final String phoneNumber, final boolean isNewTask) {
-        Intent intent = new Intent("android.intent.action.CALL", Uri.parse("tel:" + phoneNumber));
+        Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + phoneNumber));
         return getIntent(intent, isNewTask);
     }
 
@@ -452,6 +454,30 @@ public final class IntentUtils {
         intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
         return getIntent(intent, isNewTask);
     }
+
+    /**
+     * 获取应用设置页面的意图
+     * @param packageName
+     * @return
+     */
+    public static Intent getAppSettingsIntent(String packageName) {
+        Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+        intent.setData(Uri.parse("package:" + packageName));
+        return getIntent(intent, true);
+    }
+
+    /**
+     * 获取跳转桌面的意图
+     */
+    public static Intent getGoHomeIntent() {
+        Intent intent = new Intent(Intent.ACTION_MAIN);
+        intent.addCategory(Intent.CATEGORY_HOME);
+        return getIntent(intent, true);
+    }
+
+
+
+
 
     private static Intent getIntent(final Intent intent, final boolean isNewTask) {
         return isNewTask ? intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK) : intent;
@@ -553,9 +579,10 @@ public final class IntentUtils {
 
     /**
      * 获取Intent意图
+     *
      * @param context
-     * @param cls 类名
-     * @param action 动作
+     * @param cls     类名
+     * @param action  动作
      * @return
      */
     @NonNull
@@ -565,9 +592,10 @@ public final class IntentUtils {
 
     /**
      * 获取Intent意图
+     *
      * @param context
-     * @param cls 类名
-     * @param action 动作
+     * @param cls     类名
+     * @param action  动作
      * @return
      */
     @NonNull
@@ -587,9 +615,10 @@ public final class IntentUtils {
 
     /**
      * 传递数据
+     *
      * @param intent
-     * @param key 关键字
-     * @param param 数据
+     * @param key    关键字
+     * @param param  数据
      * @return
      */
     public static Intent putExtra(Intent intent, String key, Object param) {
@@ -632,9 +661,10 @@ public final class IntentUtils {
 
     /**
      * 传递数据
+     *
      * @param bundle
-     * @param key 关键字
-     * @param param 数据
+     * @param key    关键字
+     * @param param  数据
      * @return
      */
     public static Bundle putBundle(Bundle bundle, String key, Object param) {
@@ -696,6 +726,7 @@ public final class IntentUtils {
 
     /**
      * 获取文件选择的 Intent
+     *
      * @param documentType 文件类型
      * @return
      */

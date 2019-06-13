@@ -64,8 +64,8 @@ public final class DensityUtils {
      * @param dpValue 尺寸dip
      * @return 像素值
      */
-    public static int dip2px(float dpValue) {
-        return dip2px(XUtil.getContext(), dpValue);
+    public static int dp2px(float dpValue) {
+        return dp2px(XUtil.getContext(), dpValue);
     }
 
     /**
@@ -75,7 +75,7 @@ public final class DensityUtils {
      * @param dpValue 尺寸dip
      * @return 像素值
      */
-    public static int dip2px(Context context, float dpValue) {
+    public static int dp2px(Context context, float dpValue) {
         final float scale = context.getResources().getDisplayMetrics().density;
         return (int) (dpValue * scale + 0.5f);
     }
@@ -86,8 +86,8 @@ public final class DensityUtils {
      * @param pxValue 尺寸像素
      * @return DIP值
      */
-    public static int px2dip(float pxValue) {
-        return px2dip(XUtil.getContext(), pxValue);
+    public static int px2dp(float pxValue) {
+        return px2dp(XUtil.getContext(), pxValue);
     }
 
     /**
@@ -97,7 +97,7 @@ public final class DensityUtils {
      * @param pxValue 尺寸像素
      * @return DIP值
      */
-    public static int px2dip(Context context, float pxValue) {
+    public static int px2dp(Context context, float pxValue) {
         final float scale = context.getResources().getDisplayMetrics().density;
         return (int) (pxValue / scale + 0.5f);
     }
