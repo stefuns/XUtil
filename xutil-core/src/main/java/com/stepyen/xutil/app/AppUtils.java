@@ -27,6 +27,7 @@ import com.stepyen.xutil.file.FileUtils;
 import com.stepyen.xutil.security.EncryptUtils;
 
 import java.io.File;
+import java.security.MessageDigest;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -548,6 +549,52 @@ public final class AppUtils {
             return null;
         }
     }
+
+    /**
+     * 获取签名MD5
+     * @return
+     */
+    public static String getAppSignatureMD5() {
+        return signatureMD5(getAppSignature());
+    }
+
+    /**
+     * 获取签名MD5
+     * @return
+     */
+    public static String getAppSignatureMD5(String packageName) {
+        return signatureMD5(getAppSignature(packageName));
+    }
+
+
+
+    public static String signatureMD5(Signature[] signatures) {
+        try {
+            MessageDigest digest = MessageDigest.getInstance("MD5");
+            if (signatures != null) {
+                for (Signature s : signatures)
+                    digest.update(s.toByteArray());
+            }
+            return toHexString(digest.digest());
+        } catch (Exception e) {
+            return "";
+        }
+    }
+
+    /**
+     * 进行转换
+     */
+    public static String toHexString(byte[] bData) {
+        StringBuilder sb = new StringBuilder(bData.length * 2);
+        for (int i = 0; i < bData.length; i++) {
+            sb.append(HEX_DIGITS[(bData[i] & 0xf0) >>> 4]);
+            sb.append(HEX_DIGITS[bData[i] & 0x0f]);
+        }
+        return sb.toString();
+    }
+
+    private static final char HEX_DIGITS[] = { '0', '1', '2', '3', '4', '5',
+            '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F' };
 
     /**
      * 获取应用签名的的 SHA1 值

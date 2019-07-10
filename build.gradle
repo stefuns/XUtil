@@ -4,6 +4,12 @@ buildscript {
     apply from: './versions.gradle'
     addRepos(repositories) //增加代码仓库
 
+    repositories {
+        google()
+        jcenter()
+        mavenCentral()
+    }
+
     dependencies {
         classpath deps.android_gradle_plugin
         classpath deps.android_maven_gradle_plugin
