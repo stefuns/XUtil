@@ -39,6 +39,7 @@ import static android.app.Activity.RESULT_OK;
 
 /**
  * 主界面
+ *
  * @author stepyen
  * @date 2018/4/14 上午1:42
  */
@@ -55,6 +56,7 @@ public class MainFragment extends XPageSimpleListFragment {
         lists.add("路由测试");
         lists.add("通知");
         lists.add("社会化分享");
+        lists.add("通用测试页面");
         return lists;
     }
 
@@ -65,7 +67,7 @@ public class MainFragment extends XPageSimpleListFragment {
      */
     @Override
     protected void onItemClick(int position) {
-        switch(position) {
+        switch (position) {
             case 0:
 //                ActivityUtils.startActivity(TestRouterActivity.class, "param", "我是内容");
                 Map<String, Object> params = new HashMap<>();
@@ -82,11 +84,13 @@ public class MainFragment extends XPageSimpleListFragment {
                 Log.e("stepyen", DateUtils.nDaysBeforeToday(2, true));
                 break;
             case 1:
-               openPage(NotifyFragment.class);
+                openPage(NotifyFragment.class);
                 break;
             case 2:
                 openPage(SocialShareFragment.class);
-            break;
+                break;
+            case 3:
+                openPage(TestFragment.class);
             default:
                 break;
         }

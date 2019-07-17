@@ -17,4 +17,12 @@
 
 <resources>
     <dimen name="actionBarSize">48dp</dimen>
+
+    <dimen name="public_title">15sp</dimen>
+    <dimen name="public_subtitle">14sp</dimen>
+    <dimen name="public_content">13sp</dimen>
+    <dimen name="public_explain">12sp</dimen>
+    <dimen name="public_small">11sp</dimen>
+    <dimen name="public_little">10sp</dimen>
+    <dimen name="public_very_little">9sp</dimen>
 </resources>

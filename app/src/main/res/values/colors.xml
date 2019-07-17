@@ -3,4 +3,9 @@
     <color name="colorPrimary">#299EE3</color>
     <color name="colorPrimaryDark">#299EE3</color>
     <color name="colorAccent">#299EE3</color>
+
+
+    <color name="public_red">#FF294C</color>
+ <color name="public_transparent">#00000000</color><!-- 透明 -->
+
 </resources>

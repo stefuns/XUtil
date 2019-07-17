@@ -788,9 +788,6 @@ public final class SpanUtils {
         int start = mBuilder.length();
         mBuilder.append(mText);
         int end = mBuilder.length();
-        if (foregroundColor != COLOR_DEFAULT) {
-            mBuilder.setSpan(new ForegroundColorSpan(foregroundColor), start, end, flag);
-        }
         if (backgroundColor != COLOR_DEFAULT) {
             mBuilder.setSpan(new BackgroundColorSpan(backgroundColor), start, end, flag);
         }
@@ -813,37 +810,7 @@ public final class SpanUtils {
                     flag
             );
         }
-//        if (imGapWidth != -1) {
-//            if (imBitmap != null) {
-//                mBuilder.setSpan(
-//                        new CustomIconMarginSpan(imBitmap, imGapWidth, imAlign),
-//                        start,
-//                        end,
-//                        flag
-//                );
-//            } else if (imDrawable != null) {
-//                mBuilder.setSpan(
-//                        new CustomIconMarginSpan(imDrawable, imGapWidth, imAlign),
-//                        start,
-//                        end,
-//                        flag
-//                );
-//            } else if (imUri != null) {
-//                mBuilder.setSpan(
-//                        new CustomIconMarginSpan(imUri, imGapWidth, imAlign),
-//                        start,
-//                        end,
-//                        flag
-//                );
-//            } else if (imResourceId != -1) {
-//                mBuilder.setSpan(
-//                        new CustomIconMarginSpan(imResourceId, imGapWidth, imAlign),
-//                        start,
-//                        end,
-//                        flag
-//                );
-//            }
-//        }
+
         if (fontSize != -1) {
             mBuilder.setSpan(new AbsoluteSizeSpan(fontSize, fontSizeIsDp), start, end, flag);
         }
@@ -888,6 +855,10 @@ public final class SpanUtils {
         }
         if (clickSpan != null) {
             mBuilder.setSpan(clickSpan, start, end, flag);
+        }
+
+        if (foregroundColor != COLOR_DEFAULT) {
+            mBuilder.setSpan(new ForegroundColorSpan(foregroundColor), start, end, flag);
         }
         if (url != null) {
             mBuilder.setSpan(new URLSpan(url), start, end, flag);
