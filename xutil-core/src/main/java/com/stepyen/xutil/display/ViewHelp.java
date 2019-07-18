@@ -19,7 +19,7 @@ public class ViewHelp {
     /**
      * 获取文本
      */
-    public static String getText(TextView tv) {
+    public static CharSequence getText(TextView tv) {
         if (tv!= null) {
             return tv.getText().toString().trim();
         }
@@ -41,6 +41,14 @@ public class ViewHelp {
             view.setFocusable(enable);
             view.setFocusableInTouchMode(enable);
         }
+    }
+
+    /**
+     * EditText设置文本和光标置后
+     */
+    public static void editTextSetText(EditText editText,CharSequence charSequence) {
+        editText.setText(charSequence);
+        editText.setSelection(charSequence.length());
     }
 
 
