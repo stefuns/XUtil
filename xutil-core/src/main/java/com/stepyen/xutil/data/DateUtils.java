@@ -29,6 +29,8 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
+import java.util.SimpleTimeZone;
+import java.util.TimeZone;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -1129,5 +1131,54 @@ public final class DateUtils {
                 ? month - 1
                 : (month + 10) % 12];
     }
+
+
+    /**
+     * 获取时间格式
+     * @param dateFormat    时间格式 {@link DateFormatConstants}
+     * @return
+     */
+    public static SimpleDateFormat getSimpleDateFormat(String dateFormat ) {
+        SimpleDateFormat sdf = new SimpleDateFormat(dateFormat);
+        sdf.setTimeZone(getFormatedDateString(8));  // 8代表东8区，也就是北京
+        return sdf;
+    }
+
+
+    /**
+     *  获取时间格式
+     * @param dateFormat    时间格式 {@link DateFormatConstants}
+     * @param timeZoneOffset 时区
+     * @return
+     */
+    public static SimpleDateFormat getSimpleDateFormat(String dateFormat ,float timeZoneOffset ) {
+        SimpleDateFormat sdf = new SimpleDateFormat(dateFormat);
+        sdf.setTimeZone(getFormatedDateString(timeZoneOffset));
+        return sdf;
+    }
+
+
+    /**
+     * 获取时区
+     * @param timeZoneOffset
+     * @return
+     */
+    public static TimeZone getFormatedDateString(float timeZoneOffset){
+        if (timeZoneOffset > 13 || timeZoneOffset < -12) {
+            timeZoneOffset = 0;
+        }
+
+        int newTime=(int)(timeZoneOffset * 60 * 60 * 1000);
+        TimeZone timeZone;
+        String[] ids = TimeZone.getAvailableIDs(newTime);
+        if (ids.length == 0) {
+            timeZone = TimeZone.getDefault();
+        } else {
+            timeZone = new SimpleTimeZone(newTime, ids[0]);
+        }
+
+        return timeZone;
+    }
+
 
 }
