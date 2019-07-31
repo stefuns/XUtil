@@ -14,4 +14,11 @@
         android:layout_height="wrap_content"
         android:text="hahha"
         />
+
+    <TextView
+        android:id="@+id/tv_imei"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="tv_imei"
+        />
 </LinearLayout>
